@@ -7,6 +7,11 @@ app.use(express.json());
 dotenv.config();
 
 import { connectDB } from './config/db';
+import authRouter from './routes/Auth.Router';
+import addExpense from './routes/AddExpeneses.router';
+import updateExpense  from './routes/updateRouter.Router';
+import getExpense  from './routes/getRouter.router';
+import deleteExpense  from './routes/deleteExpense.router';
 
 const cors = require('cors');
 
@@ -20,6 +25,12 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 connectDB()
+
+app.use("/",authRouter)
+app.use("/" , addExpense)
+app.use("/" , updateExpense)
+app.use("/" , getExpense)
+app.use("/" , deleteExpense)
 
 app.listen(3131, () => {       
     console.log('Server is running on port 3131');

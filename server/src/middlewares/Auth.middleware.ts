@@ -9,7 +9,7 @@ export const authMiddleware = (req : CustomRequest , res : Response , next : Fun
     }
     try {
         const decoded = Jwt.verify(token , process.env.JWT_SECRET as string) as { id: number }
-        req.user = { id: decoded.id }
+        req.user = decoded
         next()
     } catch (error) {
         return res.status(401).json({ message: "unauthorized" })

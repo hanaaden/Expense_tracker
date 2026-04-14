@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../api";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { AiOutlineChrome, AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 import { MdAddCircleOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 

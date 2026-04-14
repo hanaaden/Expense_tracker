@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import API from "../api";
+import { BiUser } from "react-icons/bi";
 
 function HomePage() {
     const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
@@ -46,10 +47,11 @@ function HomePage() {
           </Link>
 
           <Link
-            to="/auth"
+            to="/profile"
             className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-xl font-semibold"
           >
-            Logout
+              <BiUser className="text-2xl text-white" />
+            profile
           </Link>
         </div>
 

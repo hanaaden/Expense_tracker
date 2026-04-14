@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import API from "../api";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { AiOutlineChrome, AiOutlineHome } from "react-icons/ai";
+import { MdAddCircleOutline } from "react-icons/md";
+import toast from "react-hot-toast";
 
 function GetExpenses() {
     const [expenses, setExpenses] = useState([]);
@@ -10,6 +13,7 @@ function GetExpenses() {
     const result = await API.get('/expenses');
     setExpenses(result.data.data);
   } catch (error) {
+    toast.error("Error fetching expenses");
     console.error('Error fetching expenses:', error);
   }
     }
@@ -18,6 +22,7 @@ function GetExpenses() {
         await API.delete(`/deleteexpense/${id}`)
           getExpense()
         } catch (err) {
+          toast.error("Error deleting expense");
           console.log("error found when deleting" , err)
         }
       }
@@ -31,13 +36,26 @@ function GetExpenses() {
   <h2 className="text-3xl font-bold text-green-800 text-center mb-8">
     Your Expenses
   </h2>
-<button
-  
-  className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg mb-4"
->
-  <Link to="/add-expense">Add Expense</Link>
-</button>
 
+<div className="flex justify-between gap-4">
+
+  <Link
+    to="/add-expense"
+    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg mb-4 transition"
+  >
+    <MdAddCircleOutline className="text-xl" />
+    Add Expense
+  </Link>
+
+  <Link
+    to="/Homepage"
+    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg mb-4 transition"
+  >
+    <AiOutlineHome className="text-xl" />
+    Home
+  </Link>
+
+</div>
   <ul className="space-y-4 max-w-2xl mx-auto">
     {expenses.map((expense: any) => (
       <li

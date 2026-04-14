@@ -13,6 +13,7 @@ import updateExpense  from './routes/updateRouter.Router';
 import getExpense  from './routes/getRouter.router';
 import deleteExpense  from './routes/deleteExpense.router';
 import getCategories  from './routes/getCategries.router';
+import  getProfile  from './routes/getProfile.router';
 
 const cors = require('cors');
 
@@ -34,6 +35,7 @@ app.use("/" , updateExpense)
 app.use("/" , getExpense)
 app.use("/" , deleteExpense)
 app.use("/" , getCategories)
+app.use("/" , getProfile)
 app.listen(3131, () => {       
     console.log('Server is running on port 3131');
 });

@@ -5,6 +5,7 @@ import GetExpenses from '../components/getExpenses';
 import Auth from '../components/Auth';
 import UpdateExpenses from '../components/updateExpenses';
 import HomePage from '../components/HomePage';
+import Profile from '../components/getProfile';
 
 function MainRoute() {
   return (
@@ -17,6 +18,7 @@ function MainRoute() {
           <Route path='/auth' element={<Auth/>}/>
           <Route path='/updateexpense/:id' element={<UpdateExpenses/>}/>
           <Route path="/homepage" element={<HomePage />} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </Router>  
     </div>

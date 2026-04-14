@@ -1,35 +1,33 @@
 import  {  useState } from 'react'
 import API from '../api';
 import {  useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 function Auth() {
 
       const [email, setEmail] = useState("");
       const [password, setPassword] = useState("");
-      const [error, setError] = useState("");
-      const [success, setSuccess] = useState("");
+     
       const navigate = useNavigate();
 
 
     const handleSignup = async () => {
   try {
-    setError("");
-    setSuccess("");
+
     await API.post("/signup", { email, password });
-    setSuccess("User created successfully! Please log in.");
+    toast.success("User created successfully! Please log in.");
   } catch (err) {
-    setError("enter valid inputs dude.");
+    toast.error ("enter valid inputs dude.");
     console.log(err);
   }
 };
 
 const handleLogin = async () => {
   try {
-    setError("");
-    setSuccess("");
+    ;
     await API.post("/login", { email, password });
 
-     setSuccess("Logged in successfully!");
+     toast.success("Logged in successfully ");
      navigate("/homepage");
     
   } catch (err : any) {
@@ -37,7 +35,7 @@ const handleLogin = async () => {
     err.response?.data?.errors?.email?._errors?.[0] ||
     err.response?.data?.errors?.password?._errors?.[0] ||
      "Error logging in";
-    setError(mesg);
+   toast.error(mesg);
    
   }
 };
@@ -68,18 +66,7 @@ const handleLogin = async () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {error && (
-          <p className="text-red-500 font-semibold text-center mb-3">
-            {error}
-          </p>
-        )}
-
-        {success && (
-          <p className="text-green-600 font-semibold text-center mb-3">
-            {success}
-          </p>
-        )}
-
+   
         <div className="flex gap-3">
 
           <button
